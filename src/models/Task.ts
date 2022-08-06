@@ -1,25 +1,26 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../instances/pg";
 
-export interface PhraseInstance extends Model {
+export interface TaskInstance extends Model {
     id: number;
-    author: string;
-    phrase: string;
+    title: string;
+    done: boolean;
 }
 
-export const Phrase = sequelize.define<PhraseInstance>('Phrase', {
+export const Task = sequelize.define<TaskInstance>('Task', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    author: {
+    title: {
         type: DataTypes.STRING
     },
-    phrase: {
-        type: DataTypes.STRING
+    done: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 }, {
-    tableName: 'phrases',
+    tableName: 'tasks',
     timestamps: false
 });
